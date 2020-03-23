@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3 id="form_title">ToDo List</h3>
+    <form class="input-group mb-4" method="POST">
+        {% csrf_token %}
+        <input class="form-control form_area" type="search" name="item">
+        <div class="input-group-append">
+            <button class="btn btn-primary form_btn" type="submit" disabled>追加</button>
+        </div>
+    </form>
+
+    <hr>
+
+    {% if all_items %}
+        <ul class="list-group mt-4">
+            {% for todo in all_items %}
+                {% if todo.completed %}
+                    <li class="list-group-item">
+                        <input class="checkbox mr-3" type="checkbox" name="{{ todo.id }}" checked="checked">
+                        {{ todo.item }}
+                        <span class="pull-right">
+                            <a class="text-info mr-3 edit_icon" href="" data-id="{{ todo.id }}" data-item="{{ todo.item }}">
+                                <i class="fa fa-edit fa-lg"></i>
+                            </a>
+                            <a class="text-warning" href="{% url 'delete' todo.id %}">
+                                <i class="fa fa-trash fa-lg"></i>
+                            </a>
+                        </span>
+                    </li>
+                {% else %}
+                    <li class="list-group-item">
+                        <input class="checkbox mr-3" type="checkbox" name="{{ todo.id }}">
+                        {{ todo.item }}
+                        <span class="pull-right">
+                            <a class="text-info mr-3 edit_icon" href="" data-id="{{ todo.id }}" data-item="{{ todo.item }}">
+                                <i class="fa fa-edit fa-lg"></i>
+                            </a>
+                            <a class="text-warning" href="{% url 'delete' todo.id %}">
+                                <i class="fa fa-trash fa-lg"></i>
+                            </a>
+                        </span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

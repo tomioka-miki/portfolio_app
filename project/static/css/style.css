@@ -1,0 +1,16 @@
+body {
+    font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic';
+    font-size: 18px;
+}
+
+.navbar #nav_title {
+    color: #007bff;
+    margin: auto;
+    font-size: 32px;
+    font-weight: normal;
+}
+
+#form_title {
+    color: #007bff;
+    font-weight: normal;
+}
