@@ -19,10 +19,8 @@ function edit_mode() {
     if ($('.form_btn').text() === '追加') {
         console.log('編集モード')
         let data = $(this).data();
-        $('.form_area').attr({
-            placeholder: data.item,
-            'data-id': data.id,
-        });
+        $('.form_area').attr('data-id', 'data.id');
+        $('.form_area').val(data.item);
         $('.form_btn').attr('type', 'button').text('編集');
     }else {
         console.log('解除')
