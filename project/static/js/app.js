@@ -17,13 +17,13 @@ function change_complete() {
 
 function edit_mode() {
     if ($('.form_btn').text() === '追加') {
-        console.log('編集モード')
+        $('.form_btn').addClass('edit_mode');
         let data = $(this).data();
-        $('.form_area').attr('data-id', 'data.id');
+        $('.form_area').attr('data-id', data.id);
         $('.form_area').val(data.item);
         $('.form_btn').attr('type', 'button').text('編集');
     }else {
-        console.log('解除')
+        $('.form_btn').removeClass('edit_mode');
         $('.form_area').removeAttr('placeholder value')
         $('.form_btn').attr('type', 'submit').text('追加');
     }
@@ -32,8 +32,10 @@ function edit_mode() {
 
 
 function edit_btn() {
-    let id = $('.form_area').data('id');
-    window.location.href = "/edit/" + id + '/' + $('.form_area').val();
+    if ($('.form_btn').hasClass('edit_mode')) {
+        let id = $('.form_area').data('id');
+        window.location.href = "/edit/" + id + '/' + $('.form_area').val();
+    }
 }
 
 
